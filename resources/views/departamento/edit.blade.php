@@ -79,16 +79,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <br>
-    ID del empleado jefe: <select name="idempleadojefe">
+    Empleado jefe: <select name="idempleadojefe">
          @foreach ($empleados as $empleado)
              @if($departamento->idempleadojefe == $empleado->id)
-                <option selected disabled value="">{{ $empleado->nombre }}</option>
+                <option selected value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
+            @endif
+            
+            @if($departamento->idempleadojefe != $empleado->id)
+                <option value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
             @endif
          @endforeach
-        
-        @foreach ($empleados as $empleado)
-            <option value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
-        @endforeach
     </select>
     &nbsp; &nbsp; &nbsp; &nbsp;
     <input class="btn btn-primary" type="submit" value="Editar"/>

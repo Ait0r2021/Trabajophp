@@ -95,12 +95,12 @@
     <select  name="idpuesto" required>
         @foreach ($puestos as $puesto)
             @if($puesto->id == $empleado->idpuesto)
-             <option selected disabled value="Puesto">{{ $puesto->nombre}}</option>
+                <option selected  value="{{ $puesto->id }}">{{ $puesto->nombre}}</option>
             @endif
-        @endforeach
-       
-        @foreach ($puestos as $puesto)
-            <option value="{{ $puesto->id }}">{{ $puesto->nombre }}</option>
+            
+            @if($puesto->id != $empleado->idpuesto)
+                <option value="{{ $puesto->id }}">{{ $puesto->nombre }}</option>
+            @endif
         @endforeach
     </select>
     
@@ -109,13 +109,14 @@
     <select value="{{ old('iddepartamento') }}" name="iddepartamento" required>
         @foreach ($departamentos as $departamento)
             @if($departamento->id == $departamento->iddepartamento)
-                <option selected disabled value="Departamento">{{ $departamento->nombre }}</option>
+                <option selected value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
+            @endif
+            
+            @if($departamento->id != $departamento->iddepartamento)
+                <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
             @endif
         @endforeach
         
-        @foreach ($departamentos as $departamento)
-            <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
-        @endforeach
     </select>
     
     <input class="btn btn-primary" type="submit" value="Editar"/>
